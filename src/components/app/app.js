@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { formatDistance } from "date-fns";
 
-import "./app.css"
+import "./app.css";
 
-import TaskList from "../taskList"
+import TaskList from "../taskList";
 import Footer from "../footer/";
 import NewTaskForm from "../newTaskForm";
 
