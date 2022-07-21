@@ -33,7 +33,8 @@
         "semi": true, 
         "parser": "flow",
         "endOfLine": "auto",
-        "trailingComma" : "none"
+        "trailingComma" : "none",
+        "printWidth": 80
       }
     ],
     "linebreak-style": [0, "unix"],

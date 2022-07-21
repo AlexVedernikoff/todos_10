@@ -60,7 +60,12 @@ export default class Task extends Component {
       <div>
         <li id={id} className={this.classNames}>
           <div className={this.taskClassName}>
-            <input className="toggle" type="checkbox" onChange={onToggleDone} checked={this.checked}></input>
+            <input
+              className="toggle"
+              type="checkbox"
+              onChange={onToggleDone}
+              checked={this.checked}
+            ></input>
             <label>
               <span className="description" onClick={onToggleDone}>
                 {this.state.label}
