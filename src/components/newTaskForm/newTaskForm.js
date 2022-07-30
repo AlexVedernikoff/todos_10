@@ -8,8 +8,8 @@ export default class NewTaskForm extends Component {
   };
 
   onLabelChange = (event) => {
-    //console.log("Вы вызвали функцию onLabelChange");
-    //console.log(event.target.value);
+    // console.log("Вы вызвали функцию onLabelChange");
+    // console.log(event.target.value);
     this.setState({ label: event.target.value });
   };
 
@@ -30,7 +30,7 @@ export default class NewTaskForm extends Component {
           onChange={this.onLabelChange}
           value={this.state.label}
           autoFocus
-        ></input>
+        />
       </form>
     );
   }

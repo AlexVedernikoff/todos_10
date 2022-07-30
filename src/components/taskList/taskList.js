@@ -4,7 +4,7 @@ import Task from "../task";
 
 import "./taskList.css";
 
-const TaskList = ({ todos, onDeleted, onEdit, onToggleDone, filter }) => {
+function TaskList({ todos, onDeleted, onEdit, onToggleDone, filter }) {
   // console.log(`Эту информацию мы передали из App.js
   // в TaskList в качестве todos:`);
   // console.log(todos);
@@ -13,7 +13,7 @@ const TaskList = ({ todos, onDeleted, onEdit, onToggleDone, filter }) => {
     // console.log(`Элемент массива todos: `);
     // console.log(item);
     const { id, ...itemProps } = item;
-    //console.log(itemProps);
+    // console.log(itemProps);
     return (
       <Task
         {...item}
@@ -53,6 +53,6 @@ const TaskList = ({ todos, onDeleted, onEdit, onToggleDone, filter }) => {
   }
 
   return <ul className="todo-list">{arrayFiltetered}</ul>;
-};
+}
 
 export default TaskList;

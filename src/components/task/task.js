@@ -21,9 +21,9 @@ export default class Task extends Component {
     event.preventDefault();
     this.props.onEdit(this.props.id, this.state.label);
     this.editing = false;
-    this.setState({
-      label: this.state.label
-    });
+    // this.setState((state) => {
+    //   label: state.label
+    // });
   };
 
   componentDidMount() {
@@ -65,14 +65,15 @@ export default class Task extends Component {
               type="checkbox"
               onChange={onToggleDone}
               checked={this.checked}
-            ></input>
-            <label>
+            />
+            <label htmlFor="created">
               <span className="description" onClick={onToggleDone}>
                 {this.state.label}
               </span>
               <span className="created">{string}</span>
             </label>
             <button
+              type="button"
               className="icon icon-edit"
               onClick={() => {
                 // console.log(this.state.label);
@@ -80,8 +81,12 @@ export default class Task extends Component {
                 // console.log(this.editing);
                 this.props.onEdit(id, this.newValue);
               }}
-            ></button>
-            <button className="icon icon-destroy" onClick={onDeleted}></button>
+            />
+            <button
+              type="button"
+              className="icon icon-destroy"
+              onClick={onDeleted}
+            />
           </div>
         </li>
         <li className="editing">
@@ -95,7 +100,7 @@ export default class Task extends Component {
                 value={this.state.label}
                 ref={(input) => input && input.focus()}
                 autoFocus
-              ></input>
+              />
             </form>
           </div>
         </li>

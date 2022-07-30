@@ -4,7 +4,7 @@ import { formatDistance } from "date-fns";
 import "./app.css";
 
 import TaskList from "../taskList";
-import Footer from "../footer/";
+import Footer from "../footer";
 import NewTaskForm from "../newTaskForm";
 
 export default class App extends Component {
@@ -16,7 +16,7 @@ export default class App extends Component {
     updateInterval: (props, propName, componentName) => {
       const value = props[propName];
 
-      if (typeof value === "number" && !isNaN(value)) {
+      if (typeof value === "number" && !Number.isNaN(value)) {
         return null;
       }
 
@@ -33,43 +33,7 @@ export default class App extends Component {
       this.createTodoItem("Have a lunch", new Date())
     ],
     buttons: ["All", "Active", "Completed"],
-    filter: "All",
-    edit: false
-  };
-
-  addItem = (text) => {
-    const newItem = this.createTodoItem(text, new Date());
-    this.setState(({ todoData }) => {
-      const newArray = [...todoData, newItem];
-      return { todoData: newArray };
-    });
-  };
-
-  deleteItem = (id) => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id);
-      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
-      return { todoData: newArray };
-    });
-  };
-
-  clearCompleted = () => {
-    this.state.todoData.forEach((item) => {
-      if (item.done) {
-        this.deleteItem(item.id);
-      }
-    });
-  };
-
-  editItem = (id, label) => {
-    this.setState(() => {
-      return { edit: true };
-    });
-    this.setState(({ todoData }) => {
-      return {
-        todoData: this.toggleProperty(todoData, id, "edit", label)
-      };
-    });
+    filter: "All"
   };
 
   createTodoItem(label, timeStamp) {
@@ -95,10 +59,8 @@ export default class App extends Component {
     const newItem = {
       ...oldItem,
       [propName]: !oldItem[propName],
-      label: label
+      label
     };
-    //1. Update object
-    //2. Construct newArray
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
   }
 
@@ -116,13 +78,48 @@ export default class App extends Component {
     return newArray;
   }
 
+  editItem = (id, label) => {
+    this.setState(() => {
+      return { edit: true };
+    });
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, "edit", label)
+      };
+    });
+  };
+
+  clearCompleted = () => {
+    this.state.todoData.forEach((item) => {
+      if (item.done) {
+        this.deleteItem(item.id);
+      }
+    });
+  };
+
+  deleteItem = (id) => {
+    this.setState(({ todoData }) => {
+      const idx = todoData.findIndex((el) => el.id === id);
+      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
+      return { todoData: newArray };
+    });
+  };
+
+  addItem = (text) => {
+    const newItem = this.createTodoItem(text, new Date());
+    this.setState(({ todoData }) => {
+      const newArray = [...todoData, newItem];
+      return { todoData: newArray };
+    });
+  };
+
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
       return {
         todoData: this.toggleProperty(todoData, id, "done")
       };
     });
-    //console.log(`toggle done ${id}`);
+    // console.log(`toggle done ${id}`);
   };
 
   onToggleFilter = (i, text) => {
@@ -140,9 +137,9 @@ export default class App extends Component {
           includeSeconds: true
         });
       });
-      this.setState(() => {
+      this.setState((state) => {
         return {
-          todoData: this.updateTime(this.state.todoData, stringArray)
+          todoData: this.updateTime(state.todoData, stringArray)
         };
       });
     }, this.props.updateInterval);

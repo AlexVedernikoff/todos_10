@@ -6,6 +6,7 @@
   },
   "ignorePatterns": ["node_modules", "dist", "build"],
   "extends": [
+    "airbnb",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
@@ -23,8 +24,36 @@
       "presets": ["@babel/preset-react"]
     }
   },
-  "plugins": ["react", "prettier", "import"],
+  "plugins": ["react", "prettier", "import", "jsx-a11y"],
   "rules": {
+    "react/state-in-constructor": [2, "never"],
+    "lines-between-class-members": [2, "always", 
+      {"exceptAfterSingleLine": true}],
+    "react/destructuring-assignment": [0, "always", 
+      { "ignoreClassFields": true, "destructureInSignature": "ignore" }],
+    "jsx-a11y/click-events-have-key-events": [0], 
+    "jsx-a11y/control-has-associated-label": [0], 
+    "jsx-a11y/no-static-element-interactions": [0],
+    "react/static-property-placement": [2, "static public field"],
+    "react/sort-comp": [2, { "order": [
+      "static-variables",
+      "static-methods",
+      "state",
+      "everything-else",
+      "instance-methods",
+      "everything-else",
+      "lifecycle",
+      "render"
+    ]}],
+    "no-console": [0],
+    "no-param-reassign":[0],
+    "no-plusplus": [0],
+    "react/jsx-props-no-spreading": [0],
+    "array-callback-return": [0],
+    "consistent-return": [0],
+    "jsx-a11y/no-autofocus":[0],
+    "react/no-array-index-key": [0],
+    "no-restricted-globals": [0],
     "indent": ["error", 2],
     "prettier/prettier": [
       "error",

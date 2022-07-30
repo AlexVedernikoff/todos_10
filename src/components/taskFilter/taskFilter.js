@@ -2,7 +2,7 @@ import React from "react";
 
 import "./taskFilter.css";
 
-const TaskFilter = ({ onToggleFilter, buttonsText, filter }) => {
+function TaskFilter({ onToggleFilter, buttonsText, filter }) {
   const buttons = buttonsText.map((text, i) => {
     let className = "";
     if (text === filter) {
@@ -10,7 +10,11 @@ const TaskFilter = ({ onToggleFilter, buttonsText, filter }) => {
     }
     return (
       <li key={i}>
-        <button className={className} onClick={() => onToggleFilter(i, text)}>
+        <button
+          type="button"
+          className={className}
+          onClick={() => onToggleFilter(i, text)}
+        >
           {text}
         </button>
       </li>
@@ -18,6 +22,6 @@ const TaskFilter = ({ onToggleFilter, buttonsText, filter }) => {
   });
 
   return <ul className="filters">{buttons}</ul>;
-};
+}
 
 export default TaskFilter;

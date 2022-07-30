@@ -4,7 +4,7 @@ import TaskFilter from "../taskFilter";
 
 import "./footer.css";
 
-const Footer = ({ toDo, onToggleFilter, clearCompleted, buttons, filter }) => {
+function Footer({ toDo, onToggleFilter, clearCompleted, buttons, filter }) {
   return (
     <footer className="footer">
       <span className="todo-count">{toDo} items left</span>
@@ -14,11 +14,15 @@ const Footer = ({ toDo, onToggleFilter, clearCompleted, buttons, filter }) => {
         buttonsText={buttons}
         filter={filter}
       />
-      <button className="clear-completed" onClick={() => clearCompleted()}>
+      <button
+        type="button"
+        className="clear-completed"
+        onClick={() => clearCompleted()}
+      >
         Clear completed
       </button>
     </footer>
   );
-};
+}
 
 export default Footer;
